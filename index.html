@@ -467,7 +467,7 @@ const Hero = () => {
               <>
                 <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
-                <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
+                <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4 text-white"/>} defaultValue={today} />
                 <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron defaultValue="15:30" />
 
                 <button
@@ -479,7 +479,7 @@ const Hero = () => {
                   {showReturn ? 'Remove Return Booking' : 'Add Return Booking'}
                 </button>
                 <div className={`overflow-hidden transition-all duration-500 ${showReturn ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} />
+                  <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4 text-white"/>} />
                   <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron />
                 </div>
               </>
@@ -490,7 +490,7 @@ const Hero = () => {
                 <Field label="Airport / Terminal" placeholder="Search airport..." icon={<PlaneIcon className="w-4 h-4"/>} />
                 <Field label="Drop-off Address" placeholder="Hotel, address..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Flight Number" optional placeholder="e.g. BA245" icon={<PlaneIcon className="w-4 h-4"/>} />
-                <Field label="Pickup Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
+                <Field label="Pickup Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4 text-white"/>} defaultValue={todayAt1530} />
               </>
             )}
 
@@ -516,7 +516,7 @@ const Hero = () => {
                     ))}
                   </div>
                 </div>
-                <Field label="Start Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
+                <Field label="Start Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4 text-white"/>} defaultValue={todayAt1530} />
               </>
             )}
 
