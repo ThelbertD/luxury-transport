@@ -644,18 +644,18 @@ const Fleet = () => {
   // Each feature has rough x/y % coordinates on the fleet image so the hover
   // marker can land near the right area. Tweak any pair if it lands off.
   const fleetFeatures = [
-    { label: 'Hand-stitched leather',     x: 50, y: 65 },
-    { label: 'Climate &amp; ambient zones', x: 48, y: 30 },
-    { label: 'Champagne bar',             x: 62, y: 55 },
-    { label: 'Mini refrigerator',         x: 65, y: 62 },
-    { label: 'Panoramic glass roof',      x: 50, y: 22 },
-    { label: 'Decorative fireplace',      x: 62, y: 70 },
-    { label: 'Massage seats',             x: 42, y: 60 },
-    { label: 'Onboard Wi-Fi',             x: 50, y: 32 },
-    { label: '360° camera',               x: 50, y: 12 },
-    { label: 'Phone chargers',            x: 35, y: 58 },
-    { label: 'Umbrellas &amp; tissues',   x: 28, y: 68 },
-    { label: 'Uniformed chauffeur',       x: 78, y: 75 },
+    { label: 'Hand-stitched leather',     x: 32, y: 88 },  // diamond-quilted seat cushion bottom
+    { label: 'Climate &amp; ambient zones', x: 35, y: 25 }, // ambient ceiling glow strip
+    { label: 'Champagne bar',             x: 45, y: 53 },  // ice bucket + flutes on console
+    { label: 'Mini refrigerator',         x: 47, y: 70 },  // open fridge with drinks
+    { label: 'Panoramic glass roof',      x: 25, y: 18 },  // skylight at top
+    { label: 'Decorative fireplace',      x: 53, y: 55 },  // flame element next to champagne
+    { label: 'Massage seats',             x: 28, y: 75 },  // seat backrest mid
+    { label: 'Onboard Wi-Fi',             x: 22, y: 48 },  // tablet area
+    { label: '360° camera',               x: 18, y: 55 },  // tablet screen showing aerial view
+    { label: 'Phone chargers',            x: 18, y: 62 },  // phone on console below screen
+    { label: 'Umbrellas &amp; tissues',   x: 76, y: 78 },  // umbrella + tissue pocket, right
+    { label: 'Uniformed chauffeur',       x: 92, y: 35 },  // chauffeur figure, far right
   ];
   const [hovered, setHovered] = useState(null);
   const active = hovered !== null ? fleetFeatures[hovered] : null;
