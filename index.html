@@ -104,10 +104,11 @@
   }
   ::selection { background: #C9A961; color: #0A0A0A; }
 
-  /* Fleet image — soft radial mask so edges dissolve into the section background */
+  /* Fleet image — heavy radial fade + lighten blend so the edges fully disappear into bg-ink-soft */
   .fleet-blend {
-    -webkit-mask-image: radial-gradient(ellipse 80% 75% at center, black 55%, transparent 100%);
-    mask-image: radial-gradient(ellipse 80% 75% at center, black 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at center, black 15%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 65% at center, black 15%, transparent 75%);
+    mix-blend-mode: lighten;
   }
   /* native date / time picker indicator → white */
   input[type="date"]::-webkit-calendar-picker-indicator,
