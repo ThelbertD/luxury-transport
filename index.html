@@ -384,16 +384,34 @@ const Hero = () => {
       <p className="reveal delay-2 text-lg lg:text-xl text-ivory/80 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
         A private chauffeur house for airports, executives, weddings and tour calendars &mdash; in the Mercedes V-Class, by appointment.
       </p>
-      <div className="reveal delay-3 flex flex-wrap items-center justify-center gap-4 mb-20">
-        <a href="#contact" className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-ink px-9 py-4 text-[12px] font-semibold tracking-[0.22em] uppercase transition-all duration-300 shadow-gold">
+      {/* Transparent glass booking form — video shows through */}
+      <form
+        onSubmit={(e) => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }}
+        className="reveal delay-3 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] bg-ink/30 backdrop-blur-xl border border-white/15 text-left shadow-luxe mb-6"
+      >
+        <label className="block p-5 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 transition-colors cursor-text">
+          <span className="block text-[9px] font-semibold tracking-[0.28em] uppercase text-gold mb-1.5">Pickup</span>
+          <input type="text" placeholder="Address, hotel or airport" className="w-full bg-transparent border-0 text-ivory placeholder:text-ivory/40 text-sm focus:outline-none p-0" />
+        </label>
+        <label className="block p-5 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 transition-colors cursor-text">
+          <span className="block text-[9px] font-semibold tracking-[0.28em] uppercase text-gold mb-1.5">Drop-off</span>
+          <input type="text" placeholder="Where to" className="w-full bg-transparent border-0 text-ivory placeholder:text-ivory/40 text-sm focus:outline-none p-0" />
+        </label>
+        <label className="block p-5 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 transition-colors cursor-text">
+          <span className="block text-[9px] font-semibold tracking-[0.28em] uppercase text-gold mb-1.5">Date &amp; Time</span>
+          <input type="datetime-local" className="w-full bg-transparent border-0 text-ivory placeholder:text-ivory/40 text-sm focus:outline-none p-0 [color-scheme:dark]" />
+        </label>
+        <button type="submit" className="group bg-gold hover:bg-gold-light text-ink px-8 py-5 text-[11px] font-semibold tracking-[0.22em] uppercase transition-colors flex items-center justify-center gap-3 shadow-gold">
           Get Started
           <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"/>
-        </a>
-        <a href="tel:+442045773000" className="inline-flex items-center gap-3 px-9 py-4 text-[12px] font-medium tracking-[0.22em] uppercase border border-ivory/30 text-ivory hover:border-gold hover:text-gold backdrop-blur-sm bg-ink/20 transition-all duration-300">
-          +44 20 4577 3000
-        </a>
+        </button>
+      </form>
+
+      <div className="reveal delay-4 mb-16 text-[12px] tracking-[0.18em] uppercase text-ivory/60">
+        or call the desk &nbsp;·&nbsp;
+        <a href="tel:+442045773000" className="text-ivory hover:text-gold transition-colors">+44 20 4577 3000</a>
       </div>
-      <div className="reveal delay-4 grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto pt-8 border-t border-white/15">
+      <div className="reveal delay-5 grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto pt-8 border-t border-white/15">
         <div>
           <div className="font-serif text-2xl sm:text-3xl text-gold font-light">24/7</div>
           <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Concierge</div>
