@@ -103,8 +103,19 @@
     color: transparent;
   }
   ::selection { background: #C9A961; color: #0A0A0A; }
-  /* hide native search clearer in date input */
-  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacity(.5); cursor: pointer; }
+  /* native date / time picker indicator → white */
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    cursor: pointer;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator:hover,
+  input[type="time"]::-webkit-calendar-picker-indicator:hover,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
 </style>
 </head>
 <body class="bg-ink text-ivory">
@@ -468,7 +479,7 @@ const Hero = () => {
                 <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
-                <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4 text-white"/>} defaultValue="15:30" />
+                <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} defaultValue="15:30" />
 
                 <button
                   type="button"
@@ -480,7 +491,7 @@ const Hero = () => {
                 </button>
                 <div className={`overflow-hidden transition-all duration-500 ${showReturn ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} />
-                  <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4 text-white"/>} />
+                  <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} />
                 </div>
               </>
             )}
