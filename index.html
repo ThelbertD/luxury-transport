@@ -104,10 +104,10 @@
   }
   ::selection { background: #C9A961; color: #0A0A0A; }
 
-  /* Fleet image — heavy radial fade so the edges fully disappear into bg-ink-soft */
+  /* Fleet image — keep the centre crisp; only the very edges fade into bg-ink-soft */
   .fleet-blend {
-    -webkit-mask-image: radial-gradient(ellipse 70% 65% at center, black 15%, transparent 75%);
-    mask-image: radial-gradient(ellipse 70% 65% at center, black 15%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 95% 90% at center, black 70%, transparent 100%);
+    mask-image: radial-gradient(ellipse 95% 90% at center, black 70%, transparent 100%);
   }
   /* native date / time picker indicator → white */
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -697,7 +697,7 @@ const Fleet = () => (
         <img
           src="fleet.jpg"
           alt="Mercedes V-Class"
-          className="relative w-full h-auto object-contain fleet-blend transition-transform duration-700 hover:scale-[1.03]"
+          className="relative w-full h-auto object-contain fleet-blend transition-transform duration-700 lg:scale-[1.18] hover:lg:scale-[1.22]"
         />
       </div>
     </div>
