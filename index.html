@@ -598,21 +598,36 @@ const Features = () => (
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {features.map((f, i) => {
           const Icon = f.icon;
           return (
-            <article key={f.title} className={`reveal delay-${i % 6} group relative bg-ink p-10 lg:p-12 transition-all duration-500 hover:bg-ink-soft cursor-default overflow-hidden`}>
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gold/0 group-hover:bg-gold/[0.05] transition-all duration-700"></div>
+            <article
+              key={f.title}
+              className={`reveal delay-${i % 6} group relative bg-ink-soft border border-white/10 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-15px_rgba(0,0,0,0.7),0_0_0_1px_rgba(201,169,97,0.15)] cursor-default overflow-hidden`}
+            >
+              {/* Gold corner glow that grows on hover */}
+              <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gold/[0.04] group-hover:bg-gold/[0.10] blur-2xl transition-all duration-700"></div>
+
+              {/* Subtle index in top-right */}
+              <span className="absolute top-6 right-6 font-serif text-xs tracking-[0.3em] text-ivory/25 group-hover:text-gold/70 transition-colors duration-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
               <div className="relative">
-                <div className="w-14 h-14 flex items-center justify-center border border-gold/30 text-gold mb-8 group-hover:border-gold group-hover:bg-gold group-hover:text-ink transition-all duration-500">
+                {/* Icon tile — gold-tinted square, fills with gold on hover */}
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/30 text-gold mb-7 group-hover:bg-gold group-hover:border-gold group-hover:text-ink group-hover:shadow-[0_8px_24px_rgba(201,169,97,0.35)] transition-all duration-500">
                   <Icon className="w-6 h-6"/>
                 </div>
-                <h3 className="font-serif text-2xl lg:text-3xl text-ivory mb-4 font-medium">{f.title}</h3>
+
+                <h3 className="font-serif text-2xl lg:text-[28px] text-ivory mb-3.5 font-medium leading-tight">{f.title}</h3>
                 <p className="text-ivory/60 leading-relaxed text-[15px]">{f.desc}</p>
-                <div className="mt-8 flex items-center gap-2 text-[11px] font-medium tracking-[0.22em] uppercase text-gold/70 group-hover:text-gold transition-colors">
-                  Enquire
-                  <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"/>
+
+                <div className="mt-7 pt-5 border-t border-white/10 group-hover:border-gold/20 transition-colors duration-500 flex items-center justify-between">
+                  <span className="text-[10px] font-semibold tracking-[0.24em] uppercase text-gold/70 group-hover:text-gold transition-colors">
+                    Enquire
+                  </span>
+                  <ArrowIcon className="w-4 h-4 text-gold/60 group-hover:text-gold transition-all duration-300 group-hover:translate-x-1"/>
                 </div>
               </div>
             </article>
