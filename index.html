@@ -644,18 +644,18 @@ const Fleet = () => {
   // Each feature has rough x/y % coordinates on the fleet image so the hover
   // marker can land near the right area. Tweak any pair if it lands off.
   const fleetFeatures = [
-    { label: 'Hand-stitched leather',     x: 32, y: 88 },  // diamond-quilted seat cushion bottom
-    { label: 'Climate &amp; ambient zones', x: 35, y: 25 }, // ambient ceiling glow strip
-    { label: 'Champagne bar',             x: 45, y: 53 },  // ice bucket + flutes on console
-    { label: 'Mini refrigerator',         x: 47, y: 70 },  // open fridge with drinks
-    { label: 'Panoramic glass roof',      x: 25, y: 18 },  // skylight at top
-    { label: 'Decorative fireplace',      x: 53, y: 55 },  // flame element next to champagne
-    { label: 'Massage seats',             x: 28, y: 75 },  // seat backrest mid
-    { label: 'Onboard Wi-Fi',             x: 22, y: 48 },  // tablet area
-    { label: '360° camera',               x: 18, y: 55 },  // tablet screen showing aerial view
-    { label: 'Phone chargers',            x: 18, y: 62 },  // phone on console below screen
-    { label: 'Umbrellas &amp; tissues',   x: 76, y: 78 },  // umbrella + tissue pocket, right
-    { label: 'Uniformed chauffeur',       x: 92, y: 35 },  // chauffeur figure, far right
+    { label: 'Hand-stitched leather',     x: 20, y: 75 },  // diamond-quilted cushion, foreground
+    { label: 'Climate &amp; ambient zones', x: 28, y: 22 }, // orange ambient strip across ceiling
+    { label: 'Champagne bar',             x: 43, y: 55 },  // ice bucket, bottle + flutes
+    { label: 'Mini refrigerator',         x: 40, y: 70 },  // open fridge, coloured cans
+    { label: 'Panoramic glass roof',      x: 28, y: 12 },  // glass skylight, top centre-left
+    { label: 'Decorative fireplace',      x: 53, y: 55 },  // orange flame, right of champagne
+    { label: 'Massage seats',             x: 50, y: 35 },  // mid-row seat backrest / headrest
+    { label: 'Onboard Wi-Fi',             x: 35, y: 55 },  // console hub between phone and bar
+    { label: '360° camera',               x: 28, y: 48 },  // tablet showing aerial car view
+    { label: 'Phone chargers',            x: 15, y: 50 },  // phone on console, left of tablet
+    { label: 'Umbrellas &amp; tissues',   x: 55, y: 58 },  // umbrella handle + tissue pouch in seatback
+    { label: 'Uniformed chauffeur',       x: 90, y: 22 },  // chauffeur head, top-right
   ];
   const [hovered, setHovered] = useState(null);
   const active = hovered !== null ? fleetFeatures[hovered] : null;
