@@ -315,11 +315,11 @@ const Nav = () => {
   );
 };
 
-/* ============ BOOKING-WIDGET FIELD ============ */
+/* ============ BOOKING-WIDGET FIELD (dark glass) ============ */
 const Field = ({ label, type = 'text', placeholder, icon, hasChevron, defaultValue, optional }) => (
   <div className="mb-3.5">
-    <label className="block text-[11px] font-medium text-stone mb-1.5 tracking-wide">
-      {label}{optional && <span className="text-stone/70 font-normal"> (optional)</span>}
+    <label className="block text-[11px] font-medium text-ivory/70 mb-1.5 tracking-wide">
+      {label}{optional && <span className="text-ivory/40 font-normal"> (optional)</span>}
     </label>
     <div className="relative">
       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gold pointer-events-none">{icon}</span>
@@ -327,10 +327,10 @@ const Field = ({ label, type = 'text', placeholder, icon, hasChevron, defaultVal
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="w-full py-2.5 pl-10 pr-9 text-sm bg-ivory-deep border border-stone-soft/40 rounded-md focus:outline-none focus:border-gold focus:bg-white focus:ring-2 focus:ring-gold/15 text-ink placeholder:text-stone transition-all"
+        className="w-full py-2.5 pl-10 pr-9 text-sm bg-white/5 border border-white/10 rounded-md focus:outline-none focus:border-gold focus:bg-white/10 focus:ring-2 focus:ring-gold/20 text-ivory placeholder:text-ivory/40 transition-all [color-scheme:dark]"
       />
       {hasChevron && (
-        <ChevronDownIcon className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-stone pointer-events-none" />
+        <ChevronDownIcon className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-ivory/50 pointer-events-none" />
       )}
     </div>
   </div>
@@ -402,128 +402,132 @@ const Hero = () => {
     <div className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full border border-gold/10 pointer-events-none z-[2]"></div>
 
     {/* Content */}
-    <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 text-center pt-32 pb-24 w-full">
-      <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-8">
-        <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
-        London &middot; Est. 2026
-        <span className="inline-block w-10 h-px bg-gold align-middle ml-4"></span>
-      </p>
-      <h1 className="reveal delay-1 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-[96px] leading-[0.98] tracking-tightest text-ivory font-extralight mb-8 drop-shadow-[0_2px_30px_rgba(0,0,0,0.6)]">
-        Travel that arrives <em className="italic font-light gold-text-gradient">composed</em>, every time.
-      </h1>
-      <p className="reveal delay-2 text-lg lg:text-xl text-ivory/80 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-        A private chauffeur house for airports, executives, weddings and tour calendars &mdash; in the Mercedes V-Class, by appointment.
-      </p>
-      {/* Booking widget — white card on dark video, gold accents */}
-      <div className="reveal delay-3 w-full max-w-md mx-auto bg-ivory rounded-lg shadow-luxe overflow-hidden text-left mb-5">
-        {/* Tabs */}
-        <div className="flex border-b border-stone-soft/40 px-2">
-          {[
-            { id: 'oneway', label: 'One Way' },
-            { id: 'airport', label: 'Airport Pickup' },
-            { id: 'hourly', label: 'Hourly' },
-          ].map(t => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setTab(t.id)}
-              className={`flex-1 py-3.5 text-[13px] font-medium relative transition-colors ${
-                tab === t.id ? 'text-ink' : 'text-stone hover:text-gold-deep'
-              }`}
-            >
-              {t.label}
-              {tab === t.id && <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-gold rounded-full"></span>}
-            </button>
-          ))}
+    <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-24 w-full grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      {/* Left column: text */}
+      <div className="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
+        <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-8">
+          <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
+          London &middot; Est. 2026
+        </p>
+        <h1 className="reveal delay-1 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] leading-[0.98] tracking-tightest text-ivory font-extralight mb-8 drop-shadow-[0_2px_30px_rgba(0,0,0,0.6)]">
+          Travel that arrives <em className="italic font-light gold-text-gradient">composed</em>, every time.
+        </h1>
+        <p className="reveal delay-2 text-lg lg:text-xl text-ivory/80 max-w-xl mx-auto lg:mx-0 mb-10 font-light leading-relaxed">
+          A private chauffeur house for airports, executives, weddings and tour calendars &mdash; in the Mercedes V-Class, by appointment.
+        </p>
+        <div className="reveal delay-4 mb-10 text-[12px] tracking-[0.18em] uppercase text-ivory/70">
+          or call the desk &nbsp;·&nbsp;
+          <a href="tel:+442045773000" className="text-ivory hover:text-gold transition-colors">+44 20 4577 3000</a>
         </div>
+        <div className="reveal delay-5 grid grid-cols-3 gap-6 sm:gap-10 max-w-md mx-auto lg:mx-0 pt-8 border-t border-white/15">
+          <div>
+            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">24/7</div>
+            <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Concierge</div>
+          </div>
+          <div>
+            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">100%</div>
+            <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Vetted Drivers</div>
+          </div>
+          <div>
+            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">UK + EU</div>
+            <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Coverage</div>
+          </div>
+        </div>
+      </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }}
-          className="p-5"
-        >
-          {tab === 'oneway' && (
-            <>
-              <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
-              <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
-              <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
-              <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron defaultValue="15:30" />
-
+      {/* Right column: booking widget — dark transparent glass */}
+      <div className="lg:col-span-5 order-1 lg:order-2">
+        <div className="reveal delay-3 w-full max-w-md mx-auto lg:ml-auto bg-ink/40 backdrop-blur-2xl border border-white/10 rounded-lg shadow-luxe overflow-hidden text-left">
+          {/* Tabs */}
+          <div className="flex border-b border-white/10 px-2">
+            {[
+              { id: 'oneway', label: 'One Way' },
+              { id: 'airport', label: 'Airport Pickup' },
+              { id: 'hourly', label: 'Hourly' },
+            ].map(t => (
               <button
+                key={t.id}
                 type="button"
-                onClick={() => setShowReturn(!showReturn)}
-                className="ml-auto flex items-center gap-1.5 text-[13px] font-medium text-ink hover:text-gold-deep py-1 mb-3 transition-colors"
+                onClick={() => setTab(t.id)}
+                className={`flex-1 py-3.5 text-[12px] font-medium relative transition-colors ${
+                  tab === t.id ? 'text-ivory' : 'text-ivory/50 hover:text-gold'
+                }`}
               >
-                <span className="text-gold font-semibold text-base leading-none">{showReturn ? '−' : '+'}</span>
-                {showReturn ? 'Remove Return Booking' : 'Add Return Booking'}
+                {t.label}
+                {tab === t.id && <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-gold rounded-full"></span>}
               </button>
-              <div className={`overflow-hidden transition-all duration-500 ${showReturn ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} />
-                <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron />
-              </div>
-            </>
-          )}
+            ))}
+          </div>
 
-          {tab === 'airport' && (
-            <>
-              <Field label="Airport / Terminal" placeholder="Search airport..." icon={<PlaneIcon className="w-4 h-4"/>} />
-              <Field label="Drop-off Address" placeholder="Hotel, address..." icon={<MapPinIcon className="w-4 h-4"/>} />
-              <Field label="Flight Number" optional placeholder="e.g. BA245" icon={<PlaneIcon className="w-4 h-4"/>} />
-              <Field label="Pickup Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
-            </>
-          )}
-
-          {tab === 'hourly' && (
-            <>
-              <Field label="Pickup Address" placeholder="Where should we pick you up?" icon={<MapPinIcon className="w-4 h-4"/>} />
-              <div className="mb-3.5">
-                <label className="block text-[11px] font-medium text-stone mb-1.5 tracking-wide">Duration (hours)</label>
-                <div className="grid grid-cols-4 gap-2">
-                  {['2h', '4h', '6h', '8h'].map(d => (
-                    <button
-                      key={d}
-                      type="button"
-                      onClick={() => setDuration(d)}
-                      className={`p-2 text-sm border rounded-md transition-all ${
-                        duration === d
-                          ? 'bg-gold/15 border-gold text-gold-deep font-semibold'
-                          : 'bg-ivory-deep border-stone-soft/40 text-ink hover:border-gold'
-                      }`}
-                    >
-                      {d}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <Field label="Start Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
-            </>
-          )}
-
-          <button
-            type="submit"
-            className="w-full py-3 bg-gradient-to-b from-gold to-gold-deep text-ivory font-semibold text-sm rounded-md hover:brightness-110 hover:shadow-lg transition-all flex items-center justify-center gap-2 mt-2 active:translate-y-px"
+          <form
+            onSubmit={(e) => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }}
+            className="p-5"
           >
-            <SearchIcon className="w-4 h-4"/>
-            Search Ride
-          </button>
-        </form>
-      </div>
+            {tab === 'oneway' && (
+              <>
+                <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
+                <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
+                <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
+                <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron defaultValue="15:30" />
 
-      <div className="reveal delay-4 mb-16 text-[12px] tracking-[0.18em] uppercase text-ivory/70">
-        or call the desk &nbsp;·&nbsp;
-        <a href="tel:+442045773000" className="text-ivory hover:text-gold transition-colors">+44 20 4577 3000</a>
-      </div>
-      <div className="reveal delay-5 grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto pt-8 border-t border-white/15">
-        <div>
-          <div className="font-serif text-2xl sm:text-3xl text-gold font-light">24/7</div>
-          <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Concierge</div>
-        </div>
-        <div>
-          <div className="font-serif text-2xl sm:text-3xl text-gold font-light">100%</div>
-          <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Vetted Drivers</div>
-        </div>
-        <div>
-          <div className="font-serif text-2xl sm:text-3xl text-gold font-light">UK + EU</div>
-          <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Coverage</div>
+                <button
+                  type="button"
+                  onClick={() => setShowReturn(!showReturn)}
+                  className="ml-auto flex items-center gap-1.5 text-[13px] font-medium text-ivory hover:text-gold py-1 mb-3 transition-colors"
+                >
+                  <span className="text-gold font-semibold text-base leading-none">{showReturn ? '−' : '+'}</span>
+                  {showReturn ? 'Remove Return Booking' : 'Add Return Booking'}
+                </button>
+                <div className={`overflow-hidden transition-all duration-500 ${showReturn ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} />
+                  <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron />
+                </div>
+              </>
+            )}
+
+            {tab === 'airport' && (
+              <>
+                <Field label="Airport / Terminal" placeholder="Search airport..." icon={<PlaneIcon className="w-4 h-4"/>} />
+                <Field label="Drop-off Address" placeholder="Hotel, address..." icon={<MapPinIcon className="w-4 h-4"/>} />
+                <Field label="Flight Number" optional placeholder="e.g. BA245" icon={<PlaneIcon className="w-4 h-4"/>} />
+                <Field label="Pickup Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
+              </>
+            )}
+
+            {tab === 'hourly' && (
+              <>
+                <Field label="Pickup Address" placeholder="Where should we pick you up?" icon={<MapPinIcon className="w-4 h-4"/>} />
+                <div className="mb-3.5">
+                  <label className="block text-[11px] font-medium text-ivory/70 mb-1.5 tracking-wide">Duration (hours)</label>
+                  <div className="grid grid-cols-4 gap-2">
+                    {['2h', '4h', '6h', '8h'].map(d => (
+                      <button
+                        key={d}
+                        type="button"
+                        onClick={() => setDuration(d)}
+                        className={`p-2 text-sm border rounded-md transition-all ${
+                          duration === d
+                            ? 'bg-gold/20 border-gold text-gold font-semibold'
+                            : 'bg-white/5 border-white/10 text-ivory/80 hover:border-gold'
+                        }`}
+                      >
+                        {d}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <Field label="Start Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
+              </>
+            )}
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-b from-gold to-gold-deep text-ink font-semibold text-sm rounded-md hover:brightness-110 hover:shadow-lg transition-all flex items-center justify-center gap-2 mt-2 active:translate-y-px"
+            >
+              <SearchIcon className="w-4 h-4"/>
+              Search Ride
+            </button>
+          </form>
         </div>
       </div>
     </div>
