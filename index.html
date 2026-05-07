@@ -318,33 +318,24 @@ const Hero = () => {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    let mouseTargetX = 0, mouseTargetY = 0, scrollTarget = 0;
-    let mouseX = 0, mouseY = 0, scrollY = 0;
+    let target = 0, current = 0;
     let raf;
 
     const tick = () => {
-      mouseX += (mouseTargetX - mouseX) * 0.08;
-      mouseY += (mouseTargetY - mouseY) * 0.08;
-      scrollY += (scrollTarget - scrollY) * 0.18;
+      current += (target - current) * 0.18;
       const v = videoRef.current;
       if (v) {
-        v.style.transform = `translate3d(${mouseX.toFixed(2)}px, ${(mouseY + scrollY).toFixed(2)}px, 0) scale(1.14)`;
+        v.style.transform = `translate3d(0, ${current.toFixed(2)}px, 0) scale(1.14)`;
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
 
-    const onScroll = () => { scrollTarget = window.scrollY * 0.30; };
-    const onMouse = (e) => {
-      mouseTargetX = (e.clientX / window.innerWidth - 0.5) * 24;
-      mouseTargetY = (e.clientY / window.innerHeight - 0.5) * 18;
-    };
+    const onScroll = () => { target = window.scrollY * 0.30; };
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('mousemove', onMouse, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('mousemove', onMouse);
     };
   }, []);
 
