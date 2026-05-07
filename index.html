@@ -316,9 +316,9 @@ const Hero = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let target = 0, current = 0, raf;
+    let triggered = false;
 
     const tick = () => {
       current += (target - current) * 0.12;
@@ -328,11 +328,20 @@ const Hero = () => {
       }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    if (!reduced) raf = requestAnimationFrame(tick);
 
-    // Translate the video down at 40% of scroll speed → very visible parallax.
-    const onScroll = () => { target = window.scrollY * 0.40; };
-    onScroll();
+    const onScroll = () => {
+      // Trigger the video on the first scroll down past 20px
+      if (!triggered && window.scrollY > 20) {
+        triggered = true;
+        const v = videoRef.current;
+        if (v) {
+          const p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
+      }
+      if (!reduced) target = window.scrollY * 0.40;
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
@@ -342,11 +351,10 @@ const Hero = () => {
 
   return (
   <section id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink">
-    {/* Background video — autoplays on loop, plus drifts down on scroll for parallax */}
+    {/* Background video — paused until first scroll, then plays + drifts on scroll */}
     <video
       ref={videoRef}
       className="hero-video"
-      autoPlay
       muted
       loop
       playsInline
