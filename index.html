@@ -316,38 +316,60 @@ const Hero = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const v = videoRef.current;
+    if (!v) return;
 
-    let target = 0, current = 0;
+    // Range of scroll, in pixels, over which the video scrubs from start to end.
+    // 1.5 * viewport height = scrubs through the entire hero + a bit of overlap.
+    const SCRUB_RANGE = () => window.innerHeight * 1.5;
+
+    let targetTime = 0, currentTime = 0;
     let raf;
+    let ready = false;
 
     const tick = () => {
-      current += (target - current) * 0.18;
-      const v = videoRef.current;
-      if (v) {
-        v.style.transform = `translate3d(0, ${current.toFixed(2)}px, 0) scale(1.14)`;
+      currentTime += (targetTime - currentTime) * 0.12;
+      if (ready && v.duration) {
+        try { v.currentTime = Math.min(currentTime, v.duration - 0.05); } catch (e) {}
       }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
 
-    const onScroll = () => { target = window.scrollY * 0.30; };
+    const onScroll = () => {
+      if (!ready || !v.duration) return;
+      const progress = Math.max(0, Math.min(1, window.scrollY / SCRUB_RANGE()));
+      targetTime = progress * v.duration;
+    };
+
+    const onMeta = () => {
+      ready = true;
+      v.pause();
+      v.currentTime = 0;
+      onScroll();
+      raf = requestAnimationFrame(tick);
+    };
+
+    if (v.readyState >= 1 && v.duration) {
+      onMeta();
+    } else {
+      v.addEventListener('loadedmetadata', onMeta, { once: true });
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('scroll', onScroll);
+      v.removeEventListener('loadedmetadata', onMeta);
     };
   }, []);
 
   return (
   <section id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink">
-    {/* Background video — autoplay, muted, looped, full-bleed, parallax on scroll + mouse */}
+    {/* Background video — paused, scrubbed by scroll position */}
     <video
       ref={videoRef}
       className="hero-video"
-      autoPlay
       muted
-      loop
       playsInline
       preload="auto"
       aria-hidden="true"
