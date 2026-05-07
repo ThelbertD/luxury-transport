@@ -468,7 +468,7 @@ const Hero = () => {
                 <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
                 <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
-                <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron defaultValue="15:30" />
+                <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4 text-white"/>} defaultValue="15:30" />
 
                 <button
                   type="button"
@@ -480,7 +480,7 @@ const Hero = () => {
                 </button>
                 <div className={`overflow-hidden transition-all duration-500 ${showReturn ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <Field label="Return Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} />
-                  <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} hasChevron />
+                  <Field label="Return Time" type="time" icon={<ClockIcon className="w-4 h-4 text-white"/>} />
                 </div>
               </>
             )}
