@@ -55,11 +55,13 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Poppins', system-ui, sans-serif; background: #0A0A0A; -webkit-font-smoothing: antialiased; }
   .font-serif { font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; }
-  /* Hero video poster fallback while loading */
+  /* Hero video — scaled up so parallax movement never reveals edges */
   .hero-video {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; object-position: center;
     z-index: 0;
+    transform: translate3d(0, 0, 0) scale(1.14);
+    will-change: transform;
   }
   .hero-video-overlay {
     position: absolute; inset: 0;
@@ -310,10 +312,47 @@ const Nav = () => {
 };
 
 /* ============ HERO ============ */
-const Hero = () => (
+const Hero = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let mouseTargetX = 0, mouseTargetY = 0, scrollTarget = 0;
+    let mouseX = 0, mouseY = 0, scrollY = 0;
+    let raf;
+
+    const tick = () => {
+      mouseX += (mouseTargetX - mouseX) * 0.08;
+      mouseY += (mouseTargetY - mouseY) * 0.08;
+      scrollY += (scrollTarget - scrollY) * 0.18;
+      const v = videoRef.current;
+      if (v) {
+        v.style.transform = `translate3d(${mouseX.toFixed(2)}px, ${(mouseY + scrollY).toFixed(2)}px, 0) scale(1.14)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const onScroll = () => { scrollTarget = window.scrollY * 0.30; };
+    const onMouse = (e) => {
+      mouseTargetX = (e.clientX / window.innerWidth - 0.5) * 24;
+      mouseTargetY = (e.clientY / window.innerHeight - 0.5) * 18;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('mousemove', onMouse, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('mousemove', onMouse);
+    };
+  }, []);
+
+  return (
   <section id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink">
-    {/* Background video — autoplay, muted, looped, full-bleed */}
+    {/* Background video — autoplay, muted, looped, full-bleed, parallax on scroll + mouse */}
     <video
+      ref={videoRef}
       className="hero-video"
       autoPlay
       muted
@@ -385,7 +424,8 @@ const Hero = () => (
       <span className="block w-px h-12 bg-gradient-to-b from-transparent to-gold animate-pulse-line origin-top"></span>
     </div>
   </section>
-);
+  );
+};
 
 /* ============ SOCIAL PROOF ============ */
 const SocialProof = () => (
