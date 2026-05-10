@@ -20,9 +20,9 @@
           sans: ['Poppins', 'system-ui', 'sans-serif'],
         },
         colors: {
-          ink: { DEFAULT: '#0A0A0A', soft: '#141414', deep: '#050505' },
-          ivory: { DEFAULT: '#FAF7F2', deep: '#F0EBE3' },
-          gold: { DEFAULT: '#C9A961', light: '#E0C691', deep: '#8B7340' },
+          ink: { DEFAULT: '#EEE9D1', soft: '#E5DEC2', deep: '#DCD3B0' },
+          ivory: { DEFAULT: '#0A0A0A', deep: '#050505' },
+          gold: { DEFAULT: '#E8C275', light: '#F5DDA0', deep: '#C09B4A' },
           stone: { DEFAULT: '#8B8579', soft: '#3A3A3A' },
         },
         letterSpacing: { tightest: '-0.04em' },
@@ -53,7 +53,8 @@
 
 <style>
   html { scroll-behavior: smooth; }
-  body { font-family: 'Poppins', system-ui, sans-serif; background: #0A0A0A; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Poppins', system-ui, sans-serif; background: #EEE9D1; -webkit-font-smoothing: antialiased; }
+  em, i { font-style: normal; }
   .font-serif { font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; }
   /* Hero video — scaled up so parallax movement never reveals edges */
   .hero-video {
@@ -66,8 +67,8 @@
   .hero-video-overlay {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.30) 35%, rgba(10,10,10,0.65) 75%, rgba(10,10,10,0.95) 100%),
-      radial-gradient(ellipse at center, rgba(10,10,10,0) 30%, rgba(10,10,10,0.55) 100%);
+      linear-gradient(180deg, rgba(238,233,209,0.45) 0%, rgba(238,233,209,0.20) 35%, rgba(238,233,209,0.65) 75%, rgba(238,233,209,0.95) 100%),
+      radial-gradient(ellipse at center, rgba(238,233,209,0) 30%, rgba(238,233,209,0.55) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -86,8 +87,8 @@
   }
   .grid-overlay {
     background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
     background-size: 80px 80px;
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
@@ -97,7 +98,7 @@
     color: transparent;
   }
   .gold-text-gradient {
-    background: linear-gradient(135deg, #E0C691 0%, #C9A961 50%, #8B7340 100%);
+    background: linear-gradient(135deg, #F5DDA0 0%, #E8C275 50%, #C09B4A 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -146,6 +147,8 @@ const LinkedinIcon = (p) => <Svg {...p}><rect x="3" y="3" width="18" height="18"
 const XIcon = (p) => <Svg {...p}><path d="M4 4l16 16M20 4 4 20"/></Svg>;
 const MenuIcon = (p) => <Svg {...p}><path d="M4 7h16M4 12h16M4 17h16"/></Svg>;
 const CloseIcon = (p) => <Svg {...p}><path d="M6 6l12 12M18 6 6 18"/></Svg>;
+const ChatBubbleIcon = (p) => <Svg {...p}><path d="M21 12a8 8 0 0 1-12.5 6.6L3 20l1.4-5.5A8 8 0 1 1 21 12z"/></Svg>;
+const SendIcon = (p) => <Svg {...p}><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></Svg>;
 
 /* ============ REVEAL ON SCROLL HOOK ============ */
 const useReveal = () => {
@@ -264,16 +267,80 @@ const VClassIllustration = () => (
 );
 
 /* ============ DATA ============ */
-const features = [
-  { icon: PlaneIcon, title: 'Airport Transfers', desc: 'All UK airports with live flight tracking, terminal meet-and-greet and full luggage handling.' },
-  { icon: BriefcaseIcon, title: 'Executive Chauffeur', desc: 'Hourly, daily or account-billed transport for boards, partners and visiting principals.' },
-  { icon: StarIcon, title: 'VIP & Talent Travel', desc: 'Discreet routing for festivals, press tours, premieres and label artist movements.' },
-  { icon: HeartIcon, title: 'Weddings & Events', desc: 'Coordinated multi-vehicle parties for the bride, the family and the entire guest list.' },
-  { icon: ClockIcon, title: '24/7 Concierge', desc: 'A real person answers the phone at three in the morning. The driver is at the kerb in twenty minutes.' },
-  { icon: CarIcon, title: 'V-Class Fleet', desc: 'Mercedes V-Class with champagne bar, panoramic roof, Wi-Fi, 360° camera and uniformed chauffeur.' },
+const packages = [
+  {
+    name: 'Essential',
+    tagline: 'Day-to-day transport, refined.',
+    price: '£150',
+    unit: 'per journey',
+    features: [
+      'Mercedes V-Class with uniformed chauffeur',
+      'Airport transfers & one-way trips',
+      '60 minutes complimentary waiting time',
+      'Real-time flight monitoring',
+      'Bottled water & on-board Wi-Fi',
+    ],
+    highlighted: false,
+    cta: 'Book a Journey',
+  },
+  {
+    name: 'Signature',
+    tagline: 'For executives, weddings & special occasions.',
+    price: '£450',
+    unit: 'per day',
+    features: [
+      'Everything in Essential',
+      'Multi-stop hourly bookings',
+      'Complimentary champagne service',
+      'Priority 24/7 dispatch',
+      'Account-billed corporate option',
+      '15% off your first reservation',
+    ],
+    highlighted: true,
+    cta: 'Reserve Signature',
+  },
+  {
+    name: 'Bespoke',
+    tagline: 'Tour management, talent itineraries, full event days.',
+    price: 'On request',
+    unit: '',
+    features: [
+      'Multi-vehicle fleet coordination',
+      'Dedicated chauffeur for the day',
+      'Tour & event production support',
+      'Tailored discretion & security',
+      'Personal concierge contact',
+    ],
+    highlighted: false,
+    cta: 'Request a Quote',
+  },
 ];
 
 const trustedBy = ['MAYFAIR HOUSE', 'ATLAS RECORDS', 'CONCIERGE LDN', 'BLOOMSBURY GROUP', 'WESTMINSTER PARTNERS', 'ALBION FESTIVALS'];
+
+const testimonials = [
+  {
+    quote: 'Five airport runs in three days during fashion week and not a single late minute. The chauffeurs handle our principals like they have done it for years.',
+    name: 'Sarah Williams',
+    role: 'Brand Director',
+    company: 'Mayfair House',
+    initials: 'SW',
+  },
+  {
+    quote: 'We toured eleven UK cities with the V-Class. The driver became part of the crew. Discreet, calm, never once needed a second instruction.',
+    name: 'James Chen',
+    role: 'Tour Manager',
+    company: 'Atlas Records',
+    initials: 'JC',
+  },
+  {
+    quote: 'They moved my entire bridal party across three venues without a hitch. The car was immaculate and the champagne was waiting. Wedding day perfection.',
+    name: 'Olivia Pemberton',
+    role: 'Private Client',
+    company: 'Notting Hill',
+    initials: 'OP',
+  },
+];
 
 /* ============ NAV ============ */
 const Nav = () => {
@@ -286,11 +353,12 @@ const Nav = () => {
   }, []);
   const links = [
     { href: '#features', label: 'Services' },
-    { href: '#fleet', label: 'Fleet' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#how', label: 'How It Works' },
+    { href: '#testimonials', label: 'Testimonials' },
+    { href: '#contact', label: 'Inquire' },
   ];
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-ink/85 backdrop-blur-xl py-4 border-b border-white/5' : 'py-6 border-b border-transparent'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-ink/85 backdrop-blur-xl py-4 border-b border-black/5' : 'py-6 border-b border-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-6">
         <a href="#top" className="font-serif text-2xl tracking-[0.18em] text-ivory">
           LT<span className="text-gold">.</span>
@@ -302,7 +370,7 @@ const Nav = () => {
             </a>
           ))}
         </nav>
-        <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] font-medium tracking-[0.22em] uppercase border border-gold/60 text-gold hover:bg-gold hover:text-ink transition-all duration-300">
+        <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] font-medium tracking-[0.22em] uppercase border border-gold/60 text-gold hover:bg-gold hover:text-ivory transition-all duration-300">
           Get Started
         </a>
         <button onClick={() => setOpen(!open)} className="md:hidden text-ivory p-1" aria-label="Menu">
@@ -312,7 +380,7 @@ const Nav = () => {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-ink/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-5">
+        <div className="md:hidden bg-ink/95 backdrop-blur-xl border-t border-black/5 px-6 py-6 space-y-5">
           {links.map(l => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block text-[12px] font-medium tracking-[0.22em] uppercase text-ivory/80 hover:text-gold">
               {l.label}
@@ -324,6 +392,99 @@ const Nav = () => {
         </div>
       )}
     </header>
+  );
+};
+
+/* ============ LOCATION SUGGESTIONS (autocomplete) ============ */
+const londonLocations = [
+  'Mayfair, W1',
+  'Belgravia, SW1',
+  'Knightsbridge, SW1',
+  'Chelsea, SW3',
+  'Kensington, W8',
+  'Notting Hill, W11',
+  'Soho, W1',
+  'Marylebone, W1',
+  'Westminster, SW1',
+  'Covent Garden, WC2',
+  "Claridge's Hotel, Brook Street",
+  'The Savoy Hotel, Strand',
+  'The Ritz London, Piccadilly',
+  'The Dorchester, Park Lane',
+  'The Connaught, Mayfair',
+  'The Berkeley, Knightsbridge',
+  'Heathrow Terminal 2',
+  'Heathrow Terminal 3',
+  'Heathrow Terminal 4',
+  'Heathrow Terminal 5',
+  'Gatwick North Terminal',
+  'Gatwick South Terminal',
+  'London City Airport',
+  'Stansted Airport',
+  'Luton Airport',
+  'St Pancras International',
+  "King's Cross Station",
+  'Paddington Station',
+  'Victoria Station',
+  'Liverpool Street Station',
+];
+
+const airportLocations = [
+  'Heathrow Terminal 2',
+  'Heathrow Terminal 3',
+  'Heathrow Terminal 4',
+  'Heathrow Terminal 5',
+  'Gatwick North Terminal',
+  'Gatwick South Terminal',
+  'London City Airport',
+  'Stansted Airport',
+  'Luton Airport',
+  'Farnborough Airport',
+  'Biggin Hill Airport',
+];
+
+/* ============ ADDRESS FIELD (autocomplete dropdown) ============ */
+const AddressField = ({ label, placeholder, icon, suggestions, optional }) => {
+  const [value, setValue] = useState('');
+  const [open, setOpen] = useState(false);
+  const filtered = value
+    ? suggestions.filter(s => s.toLowerCase().includes(value.toLowerCase()))
+    : suggestions;
+
+  return (
+    <div className="mb-2.5 relative">
+      <label className="block text-[10px] font-medium text-ivory/70 mb-1 tracking-wide">
+        {label}{optional && <span className="text-ivory/40 font-normal"> (optional)</span>}
+      </label>
+      <div className="relative">
+        <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gold pointer-events-none">{icon}</span>
+        <input
+          type="text"
+          value={value}
+          placeholder={placeholder}
+          onChange={(e) => { setValue(e.target.value); setOpen(true); }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
+          autoComplete="off"
+          className="w-full py-2 pl-9 pr-8 text-[13px] bg-black/5 border border-black/10 rounded-md focus:outline-none focus:border-gold focus:bg-black/10 focus:ring-2 focus:ring-gold/20 text-ivory placeholder:text-ivory/40 transition-all"
+        />
+        <ChevronDownIcon className={`w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-ivory/60 pointer-events-none transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+      </div>
+      {open && filtered.length > 0 && (
+        <ul className="absolute z-30 left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-ink-soft border border-gold/40 rounded-md shadow-luxe">
+          {filtered.map((s) => (
+            <li
+              key={s}
+              onMouseDown={(e) => { e.preventDefault(); setValue(s); setOpen(false); }}
+              className="px-3 py-2 text-[13px] text-ivory hover:bg-gold/15 hover:text-gold cursor-pointer transition-colors flex items-center gap-2 border-b border-black/5 last:border-b-0"
+            >
+              <MapPinIcon className="w-3.5 h-3.5 text-gold/70 flex-shrink-0"/>
+              <span className="truncate">{s}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
@@ -339,10 +500,10 @@ const Field = ({ label, type = 'text', placeholder, icon, hasChevron, defaultVal
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="w-full py-2 pl-9 pr-8 text-[13px] bg-white/5 border border-white/10 rounded-md focus:outline-none focus:border-gold focus:bg-white/10 focus:ring-2 focus:ring-gold/20 text-ivory placeholder:text-ivory/40 transition-all [color-scheme:light]"
+        className="w-full py-2 pl-9 pr-8 text-[13px] bg-black/5 border border-black/10 rounded-md focus:outline-none focus:border-gold focus:bg-black/10 focus:ring-2 focus:ring-gold/20 text-ivory placeholder:text-ivory/40 transition-all [color-scheme:light]"
       />
       {hasChevron && (
-        <ChevronDownIcon className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
+        <ChevronDownIcon className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-ivory pointer-events-none" />
       )}
     </div>
   </div>
@@ -373,7 +534,6 @@ const Hero = () => {
     if (!reduced) raf = requestAnimationFrame(tick);
 
     const onScroll = () => {
-      // Trigger the video on the first scroll down past 20px
       if (!triggered && window.scrollY > 20) {
         triggered = true;
         const v = videoRef.current;
@@ -419,29 +579,29 @@ const Hero = () => {
       <div className="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
         <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-8">
           <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
-          London &middot; Est. 2026
+          London &middot; By Appointment Only
         </p>
-        <h1 className="reveal delay-1 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] leading-[0.98] tracking-tightest text-ivory font-extralight mb-8 drop-shadow-[0_2px_30px_rgba(0,0,0,0.6)]">
-          Travel that arrives <em className="italic font-light gold-text-gradient">composed</em>, every time.
+        <h1 className="reveal delay-1 font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[52px] leading-[1] tracking-tightest text-ivory font-extralight mb-8 drop-shadow-[0_2px_30px_rgba(0,0,0,0.6)]">
+          Travel that arrives <em className="font-light gold-text-gradient">composed</em>, every time.
         </h1>
         <p className="reveal delay-2 text-lg lg:text-xl text-ivory/80 max-w-xl mx-auto lg:mx-0 mb-10 font-light leading-relaxed">
-          A private chauffeur house for airports, executives, weddings and tour calendars &mdash; in the Mercedes V-Class, by appointment.
+          London's premier private chauffeur service. Distinguished transport for airport transfers, executive travel, weddings and tour itineraries &mdash; exclusively aboard the Mercedes V-Class.
         </p>
         <div className="reveal delay-4 mb-10 text-[12px] tracking-[0.18em] uppercase text-ivory/70">
-          or call the desk &nbsp;·&nbsp;
+          New clients receive <span className="text-gold">15% off the first journey</span> &nbsp;·&nbsp;
           <a href="tel:+442045773000" className="text-ivory hover:text-gold transition-colors">+44 20 4577 3000</a>
         </div>
-        <div className="reveal delay-5 grid grid-cols-3 gap-6 sm:gap-10 max-w-md mx-auto lg:mx-0 pt-8 border-t border-white/15">
+        <div className="reveal delay-5 grid grid-cols-3 gap-6 sm:gap-10 max-w-md mx-auto lg:mx-0 pt-8 border-t border-black/15">
           <div>
-            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">24/7</div>
+            <div className="font-serif text-2xl sm:text-3xl text-ivory font-light">24/7</div>
             <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Concierge</div>
           </div>
           <div>
-            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">100%</div>
+            <div className="font-serif text-2xl sm:text-3xl text-ivory font-light">100%</div>
             <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Vetted Drivers</div>
           </div>
           <div>
-            <div className="font-serif text-2xl sm:text-3xl text-gold font-light">UK + EU</div>
+            <div className="font-serif text-2xl sm:text-3xl text-ivory font-light">UK + EU</div>
             <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60 mt-1">Coverage</div>
           </div>
         </div>
@@ -449,9 +609,9 @@ const Hero = () => {
 
       {/* Right column: booking widget — dark transparent glass */}
       <div className="lg:col-span-5 order-1 lg:order-2">
-        <div className="reveal delay-3 w-full max-w-md mx-auto lg:ml-auto bg-ink/40 backdrop-blur-2xl border border-white/10 rounded-lg shadow-luxe overflow-hidden text-left">
+        <div className="reveal delay-3 w-full max-w-md mx-auto lg:ml-auto bg-ink/40 backdrop-blur-2xl border border-black/10 rounded-lg shadow-luxe overflow-hidden text-left">
           {/* Tabs */}
-          <div className="flex border-b border-white/10 px-2">
+          <div className="flex border-b border-black/10 px-2">
             {[
               { id: 'oneway', label: 'One Way' },
               { id: 'airport', label: 'Airport Pickup' },
@@ -477,8 +637,8 @@ const Hero = () => {
           >
             {tab === 'oneway' && (
               <>
-                <Field label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
-                <Field label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} />
+                <AddressField label="Pickup Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} suggestions={londonLocations} />
+                <AddressField label="Drop-off Address" placeholder="Address, airport, hotel..." icon={<MapPinIcon className="w-4 h-4"/>} suggestions={londonLocations} />
                 <Field label="Select Date" type="date" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={today} />
                 <Field label="Select Time" type="time" icon={<ClockIcon className="w-4 h-4"/>} defaultValue="15:30" />
 
@@ -499,8 +659,8 @@ const Hero = () => {
 
             {tab === 'airport' && (
               <>
-                <Field label="Airport / Terminal" placeholder="Search airport..." icon={<PlaneIcon className="w-4 h-4"/>} />
-                <Field label="Drop-off Address" placeholder="Hotel, address..." icon={<MapPinIcon className="w-4 h-4"/>} />
+                <AddressField label="Airport / Terminal" placeholder="Search airport..." icon={<PlaneIcon className="w-4 h-4"/>} suggestions={airportLocations} />
+                <AddressField label="Drop-off Address" placeholder="Hotel, address..." icon={<MapPinIcon className="w-4 h-4"/>} suggestions={londonLocations} />
                 <Field label="Flight Number" optional placeholder="e.g. BA245" icon={<PlaneIcon className="w-4 h-4"/>} />
                 <Field label="Pickup Date & Time" type="datetime-local" icon={<CalendarIcon className="w-4 h-4"/>} defaultValue={todayAt1530} />
               </>
@@ -508,7 +668,7 @@ const Hero = () => {
 
             {tab === 'hourly' && (
               <>
-                <Field label="Pickup Address" placeholder="Where should we pick you up?" icon={<MapPinIcon className="w-4 h-4"/>} />
+                <AddressField label="Pickup Address" placeholder="Where should we pick you up?" icon={<MapPinIcon className="w-4 h-4"/>} suggestions={londonLocations} />
                 <div className="mb-2.5">
                   <label className="block text-[10px] font-medium text-ivory/70 mb-1 tracking-wide">Duration (hours)</label>
                   <div className="grid grid-cols-4 gap-1.5">
@@ -520,7 +680,7 @@ const Hero = () => {
                         className={`py-1.5 text-[13px] border rounded-md transition-all ${
                           duration === d
                             ? 'bg-gold/20 border-gold text-gold font-semibold'
-                            : 'bg-white/5 border-white/10 text-ivory/80 hover:border-gold'
+                            : 'bg-black/5 border-black/10 text-ivory/80 hover:border-gold'
                         }`}
                       >
                         {d}
@@ -534,7 +694,7 @@ const Hero = () => {
 
             <button
               type="submit"
-              className="group relative w-full py-3 mt-2 rounded-full overflow-hidden bg-gradient-to-b from-gold to-gold-deep hover:from-gold-light hover:to-gold text-ink font-semibold text-[11px] tracking-[0.22em] uppercase transition-all duration-300 flex items-center justify-center gap-2.5 hover:shadow-[0_10px_28px_rgba(201,169,97,0.55)] hover:-translate-y-0.5 active:translate-y-0 ring-1 ring-gold-light/30"
+              className="group relative w-full py-3 mt-2 rounded-full overflow-hidden bg-gradient-to-b from-gold to-gold-deep hover:from-gold-light hover:to-gold text-ivory font-semibold text-[11px] tracking-[0.22em] uppercase transition-all duration-300 flex items-center justify-center gap-2.5 hover:shadow-[0_10px_28px_rgba(201,169,97,0.55)] hover:-translate-y-0.5 active:translate-y-0 ring-1 ring-gold-light/30"
             >
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out"></span>
               <SearchIcon className="w-4 h-4 relative transition-transform duration-300 group-hover:scale-110"/>
@@ -545,12 +705,12 @@ const Hero = () => {
       </div>
     </div>
 
-    {/* Floating availability chip */}
+    {/* Floating welcome offer chip */}
     <div className="reveal delay-5 hidden md:flex absolute top-28 right-10 z-10 items-center gap-3 bg-ink/40 backdrop-blur-md border border-gold/30 px-4 py-3">
       <div className="w-2 h-2 bg-gold rounded-full animate-pulse"></div>
       <div>
-        <div className="text-[9px] tracking-[0.28em] uppercase text-gold mb-0.5">Available</div>
-        <div className="font-serif text-sm text-ivory">Tonight, 19:00</div>
+        <div className="text-[9px] tracking-[0.28em] uppercase text-black mb-0.5">Welcome Offer</div>
+        <div className="font-serif text-sm text-ivory">15% off first booking</div>
       </div>
     </div>
 
@@ -565,7 +725,7 @@ const Hero = () => {
 
 /* ============ SOCIAL PROOF ============ */
 const SocialProof = () => (
-  <section className="border-y border-white/5 bg-ink-deep py-14">
+  <section className="border-y border-black/5 bg-ink-deep py-14">
     <div className="max-w-7xl mx-auto px-6 lg:px-10">
       <p className="reveal text-center text-[10px] font-medium tracking-[0.32em] uppercase text-ivory/45 mb-10">
         Trusted by London's hotels, labels &amp; concierge desks
@@ -581,59 +741,142 @@ const SocialProof = () => (
   </section>
 );
 
-/* ============ FEATURES ============ */
+/* ============ SERVICE PACKAGES ============ */
+const CheckIcon = (p) => <Svg {...p}><path d="M5 12l4 4 10-10"/></Svg>;
+
 const Features = () => (
   <section id="features" className="py-32 relative">
     <div className="max-w-7xl mx-auto px-6 lg:px-10">
       <div className="text-center max-w-3xl mx-auto mb-20">
-        <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-6">
-          <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
-          Services
-          <span className="inline-block w-10 h-px bg-gold align-middle ml-4"></span>
+        <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-black mb-6">
+          <span className="inline-block w-10 h-px bg-black align-middle mr-4"></span>
+          Service Packages
+          <span className="inline-block w-10 h-px bg-black align-middle ml-4"></span>
         </p>
         <h2 className="reveal delay-1 font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tightest text-ivory mb-6">
-          Built around <em className="italic text-gold">your</em> calendar.
+          Choose what suits <em className="text-gold">your</em> journey.
         </h2>
         <p className="reveal delay-2 text-lg text-ivory/60 font-light">
-          Whatever the brief &mdash; one journey or one hundred &mdash; the same hands deliver it.
+          Pick a package or have us tailor one around your itinerary. Every option carries the same standards of discretion, comfort, and service.
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {features.map((f, i) => {
-          const Icon = f.icon;
-          return (
-            <article
-              key={f.title}
-              className={`reveal delay-${i % 6} group relative bg-ink-soft border border-white/10 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-15px_rgba(0,0,0,0.7),0_0_0_1px_rgba(201,169,97,0.15)] cursor-default overflow-hidden`}
-            >
-              {/* Gold corner glow that grows on hover */}
-              <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gold/[0.04] group-hover:bg-gold/[0.10] blur-2xl transition-all duration-700"></div>
-
-              {/* Subtle index in top-right */}
-              <span className="absolute top-6 right-6 font-serif text-xs tracking-[0.3em] text-ivory/25 group-hover:text-gold/70 transition-colors duration-500">
-                {String(i + 1).padStart(2, '0')}
+      <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        {packages.map((p, i) => (
+          <article
+            key={p.name}
+            className={`reveal delay-${i % 6} relative rounded-2xl p-8 lg:p-10 transition-all duration-500 flex flex-col ${
+              p.highlighted
+                ? 'bg-gradient-to-b from-gold/15 to-ink-soft border-2 border-gold shadow-[0_25px_60px_-15px_rgba(232,194,117,0.45),0_0_0_1px_rgba(232,194,117,0.4)] md:-translate-y-3'
+                : 'bg-ink-soft border border-black/10 hover:border-gold/50 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)]'
+            }`}
+          >
+            {p.highlighted && (
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gold text-ivory text-[10px] font-semibold tracking-[0.22em] uppercase shadow-[0_6px_18px_rgba(232,194,117,0.5)]">
+                Most Popular
               </span>
+            )}
 
-              <div className="relative">
-                {/* Icon tile — gold-tinted square, fills with gold on hover */}
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/30 text-gold mb-7 group-hover:bg-gold group-hover:border-gold group-hover:text-ink group-hover:shadow-[0_8px_24px_rgba(201,169,97,0.35)] transition-all duration-500">
-                  <Icon className="w-6 h-6"/>
-                </div>
+            <div className="mb-6">
+              <h3 className="font-serif text-2xl lg:text-3xl text-ivory mb-2 font-medium tracking-tightest">{p.name}</h3>
+              <p className="text-ivory/60 text-sm leading-relaxed">{p.tagline}</p>
+            </div>
 
-                <h3 className="font-serif text-2xl lg:text-[28px] text-ivory mb-3.5 font-medium leading-tight">{f.title}</h3>
-                <p className="text-ivory/60 leading-relaxed text-[15px]">{f.desc}</p>
+            <div className="mb-8 pb-6 border-b border-black/10">
+              <span className="font-serif text-4xl lg:text-5xl text-ivory font-light">{p.price}</span>
+              {p.unit && <span className="text-ivory/50 text-sm ml-2">{p.unit}</span>}
+            </div>
 
-                <div className="mt-7 pt-5 border-t border-white/10 group-hover:border-gold/20 transition-colors duration-500 flex items-center justify-between">
-                  <span className="text-[10px] font-semibold tracking-[0.24em] uppercase text-gold/70 group-hover:text-gold transition-colors">
-                    Enquire
+            <ul className="space-y-3.5 mb-10 flex-grow">
+              {p.features.map(f => (
+                <li key={f} className="flex items-start gap-3 text-[14px] text-ivory/80 leading-snug">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center flex-shrink-0">
+                    <CheckIcon className="w-3 h-3 text-gold"/>
                   </span>
-                  <ArrowIcon className="w-4 h-4 text-gold/60 group-hover:text-gold transition-all duration-300 group-hover:translate-x-1"/>
-                </div>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#contact"
+              className={`group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[11px] font-medium tracking-[0.22em] uppercase transition-all duration-300 ${
+                p.highlighted
+                  ? 'bg-gold hover:bg-gold-light text-ivory shadow-[0_10px_28px_rgba(232,194,117,0.45)] hover:-translate-y-0.5'
+                  : 'border border-gold/60 text-gold hover:bg-gold hover:text-ivory'
+              }`}
+            >
+              {p.cta}
+              <ArrowIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"/>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p className="reveal text-center text-[11px] tracking-[0.22em] uppercase text-ivory/50 mt-14">
+        Every package includes uniformed chauffeur · real-time tracking · 24/7 concierge support
+      </p>
+    </div>
+  </section>
+);
+
+/* ============ HOW IT WORKS ============ */
+const howSteps = [
+  {
+    num: '01',
+    title: 'Inquiry',
+    desc: 'Submit your details through the booking form, by phone, or by email. We hold your preferred time the moment we hear from you.',
+  },
+  {
+    num: '02',
+    title: 'Speak to Desk',
+    desc: 'Our concierge contacts you within the hour to confirm the journey, your chauffeur, and the proposed route. Adjustments welcomed up to two hours before pickup.',
+  },
+  {
+    num: '03',
+    title: 'Wait for Vehicle',
+    desc: 'Your chauffeur arrives thirty minutes early and waits quietly at the kerb. You step in, we depart, and you arrive composed.',
+  },
+];
+
+const HowItWorks = () => (
+  <section id="how" className="py-32 relative overflow-hidden">
+    <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/[0.05] blur-3xl pointer-events-none"></div>
+
+    <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+      <div className="text-center mb-20 flex flex-col items-center">
+        <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-black mb-6">
+          <span className="inline-block w-10 h-px bg-black align-middle mr-4"></span>
+          How It Works
+          <span className="inline-block w-10 h-px bg-black align-middle ml-4"></span>
+        </p>
+        <h2 className="reveal delay-1 font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light tracking-tightest text-ivory mb-6 text-center mx-auto">
+          From enquiry to <em className="text-gold">arrival</em>.
+        </h2>
+        <p className="reveal delay-2 text-lg text-ivory/60 font-light max-w-2xl">
+          Three short steps and your journey is on the calendar.
+        </p>
+      </div>
+
+      <div className="relative grid md:grid-cols-3 gap-10 lg:gap-12">
+        {/* Connecting line on desktop */}
+        <div className="hidden md:block absolute top-7 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+        {howSteps.map((s, i) => (
+          <div key={s.num} className={`reveal delay-${i % 6} relative text-center`}>
+            <div className="relative flex justify-center mb-7">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-b from-gold to-gold-deep text-ivory font-serif text-lg font-semibold flex items-center justify-center shadow-[0_8px_24px_rgba(232,194,117,0.4)] ring-4 ring-ink relative z-10">
+                {s.num}
               </div>
-            </article>
-          );
-        })}
+            </div>
+            <h3 className="font-serif text-2xl text-ivory mb-3 font-medium tracking-tightest">
+              {s.title}
+            </h3>
+            <p className="text-ivory/65 leading-relaxed text-[14px] font-light max-w-xs mx-auto">
+              {s.desc}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -661,22 +904,22 @@ const Fleet = () => {
   const active = hovered !== null ? fleetFeatures[hovered] : null;
 
   return (
-    <section id="fleet" className="py-32 bg-ink-soft border-y border-white/5 relative overflow-hidden">
+    <section id="fleet" className="py-32 bg-ink-soft border-y border-black/5 relative overflow-hidden">
       <div className="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full border border-gold/10"></div>
       <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-gold/[0.03] blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Left — content */}
         <div>
-          <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-6">
-            <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
+          <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-black mb-6">
+            <span className="inline-block w-10 h-px bg-black align-middle mr-4"></span>
             The Fleet
           </p>
           <h2 className="reveal delay-1 font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tightest text-ivory mb-6">
-            A salon <em className="italic text-gold">on wheels</em>.
+            A private <em className="text-gold">on wheels</em>.
           </h2>
           <p className="reveal delay-2 text-lg text-ivory/65 font-light leading-relaxed mb-10 max-w-xl">
-            The Mercedes V-Class &mdash; specified beyond standard. Hand-stitched leather, panoramic glazed roof, decorative fireplace, refrigerator and champagne bar. Capacity for eight, the comfort of one.
+            The Mercedes V-Class, specified far beyond manufacturer standard. Hand-stitched leather, panoramic glazed roof, decorative fireplace, refrigerator and champagne bar. Eight-passenger capacity with the privacy of a private suite &mdash; complimentary refreshments included.
           </p>
           <ul className="reveal delay-3 grid grid-cols-2 gap-x-6 gap-y-3 mb-10 max-w-xl">
             {fleetFeatures.map((f, i) => (
@@ -693,7 +936,7 @@ const Fleet = () => {
               </li>
             ))}
           </ul>
-          <a href="#contact" className="reveal delay-4 group inline-flex items-center gap-3 px-9 py-4 rounded-full text-[12px] font-medium tracking-[0.22em] uppercase border border-gold text-gold hover:bg-gold hover:text-ink transition-all duration-300">
+          <a href="#contact" className="reveal delay-4 group inline-flex items-center gap-3 px-9 py-4 rounded-full text-[12px] font-medium tracking-[0.22em] uppercase border border-gold text-gold hover:bg-gold hover:text-ivory transition-all duration-300">
             Reserve the V-Class
             <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"/>
           </a>
@@ -704,7 +947,7 @@ const Fleet = () => {
           {/* Soft gold halo behind the image */}
           <div className="absolute -inset-6 lg:-inset-10 bg-gold/10 rounded-3xl blur-3xl"></div>
 
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-luxe">
+          <div className="relative rounded-2xl overflow-hidden border border-black/10 shadow-luxe">
             <img
               src="fleet.jpg"
               alt="Mercedes V-Class"
@@ -724,7 +967,7 @@ const Fleet = () => {
             </div>
 
             {/* Capacity card bottom-right */}
-            <div className={`absolute bottom-5 right-5 px-4 py-3 rounded-xl bg-ink/60 backdrop-blur-md border border-white/10 z-10 transition-opacity duration-500 ${active ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`absolute bottom-5 right-5 px-4 py-3 rounded-xl bg-ink/60 backdrop-blur-md border border-black/10 z-10 transition-opacity duration-500 ${active ? 'opacity-0' : 'opacity-100'}`}>
               <div className="text-[10px] tracking-[0.28em] uppercase text-ivory/50 mb-0.5">Capacity</div>
               <div className="font-serif text-lg text-ivory">Up to 8 guests</div>
             </div>
@@ -755,24 +998,126 @@ const Fleet = () => {
   );
 };
 
+/* ============ TESTIMONIALS + TRUST STATS (combined) ============ */
+const trustStats = [
+  { value: '97%',  label: 'Return Clients',     desc: 'Of our clients book a second journey within twelve months — most return for years.' },
+  { value: '20+',  label: 'Years of Service',   desc: 'Two decades of moving discerning clients across London and the European mainland with the same standards.' },
+  { value: '12hr', label: 'Advance Notice',     desc: 'A typical lead time. Same-day and overnight bookings are routinely accommodated through the desk.' },
+  { value: '24/7', label: 'Concierge Desk',     desc: 'A real person answers our line at any hour, every day of the year — including public holidays.' },
+];
+
+const Testimonials = () => {
+  const [active, setActive] = useState(0);
+  return (
+    <section id="testimonials" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 grid-overlay pointer-events-none"></div>
+      <div className="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-gold/[0.04] blur-3xl pointer-events-none"></div>
+      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-gold/[0.05] blur-3xl pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-black mb-6">
+            <span className="inline-block w-10 h-px bg-black align-middle mr-4"></span>
+            Voices &amp; Numbers
+            <span className="inline-block w-10 h-px bg-black align-middle ml-4"></span>
+          </p>
+          <h2 className="reveal delay-1 font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tightest text-ivory mb-6">
+            Why our <em className="text-gold">clients</em> return.
+          </h2>
+          <p className="reveal delay-2 text-lg text-ivory/60 font-light">
+            Trusted by London's leading hotels, record labels, and private clients across the United Kingdom and Europe.
+          </p>
+        </div>
+
+        {/* Trust stats — clickable tabs */}
+        <div className="reveal delay-3 grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6 mb-6">
+          {trustStats.map((s, i) => (
+            <button
+              key={s.value}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-pressed={active === i}
+              className={`group relative px-6 py-7 rounded-xl border transition-all duration-300 text-left ${
+                active === i
+                  ? 'border-gold bg-gold/10 shadow-[0_15px_40px_rgba(232,194,117,0.20)] -translate-y-0.5'
+                  : 'border-black/10 bg-ink-soft hover:border-gold/40 hover:bg-gold/[0.05]'
+              }`}
+            >
+              <div className={`font-serif text-4xl lg:text-5xl leading-none mb-2 transition-colors text-ivory ${
+                active === i ? 'font-medium' : 'font-light'
+              }`}>
+                {s.value}
+              </div>
+              <div className={`text-[11px] tracking-[0.18em] uppercase transition-colors ${
+                active === i ? 'text-ivory font-semibold' : 'text-ivory/60 font-medium group-hover:text-gold'
+              }`}>
+                {s.label}
+              </div>
+            </button>
+          ))}
+        </div>
+        <div key={active} className="text-center max-w-2xl mx-auto min-h-[3.5rem] mb-16 animate-fade-up">
+          <p className="text-ivory/70 text-[15px] leading-relaxed font-light">
+            {trustStats[active].desc}
+          </p>
+        </div>
+
+        {/* Testimonial cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {testimonials.map((t, i) => (
+            <article
+              key={t.name}
+              className={`reveal delay-${i % 6} group relative bg-ink-soft border border-black/10 rounded-2xl p-8 lg:p-10 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-15px_rgba(0,0,0,0.7),0_0_0_1px_rgba(201,169,97,0.15)] cursor-default overflow-hidden flex flex-col`}
+            >
+              <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gold/[0.04] group-hover:bg-gold/[0.10] blur-2xl transition-all duration-700"></div>
+
+              <span className="absolute top-5 right-7 font-serif text-[80px] leading-none text-gold/20 group-hover:text-gold/40 transition-colors duration-500 select-none">&ldquo;</span>
+
+              <div className="relative flex flex-col h-full">
+                <div className="flex items-center gap-1 mb-6 text-gold">
+                  {[0,1,2,3,4].map(s => <StarIcon key={s} className="w-4 h-4 fill-current"/>)}
+                </div>
+
+                <p className="text-ivory/80 leading-relaxed text-[15px] font-light mb-8 flex-grow">
+                  {t.quote}
+                </p>
+
+                <div className="flex items-center gap-4 pt-6 border-t border-black/10 group-hover:border-gold/20 transition-colors duration-500">
+                  <div className="w-11 h-11 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-serif text-sm tracking-wider group-hover:bg-gold group-hover:text-ivory transition-all duration-500">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <div className="font-serif text-base text-ivory leading-tight">{t.name}</div>
+                    <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/50 mt-1">{t.role} &middot; {t.company}</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* ============ CTA strip — second appearance of "Get Started" ============ */
 const CtaStrip = () => (
   <section id="contact" className="py-32 relative overflow-hidden">
     <div className="absolute inset-0 grain"></div>
     <div className="max-w-5xl mx-auto px-6 lg:px-10 text-center relative">
-      <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-gold mb-8">
-        <span className="inline-block w-10 h-px bg-gold align-middle mr-4"></span>
+      <p className="reveal text-[11px] font-medium tracking-[0.32em] uppercase text-black mb-8">
+        <span className="inline-block w-10 h-px bg-black align-middle mr-4"></span>
         Reserve
-        <span className="inline-block w-10 h-px bg-gold align-middle ml-4"></span>
+        <span className="inline-block w-10 h-px bg-black align-middle ml-4"></span>
       </p>
       <h2 className="reveal delay-1 font-serif text-4xl sm:text-5xl lg:text-7xl font-light tracking-tightest text-ivory mb-8 leading-[1.05]">
-        Your next journey, <em className="italic gold-text-gradient">handled</em>.
+        Your next journey, <em className="gold-text-gradient">handled</em>.
       </h2>
       <p className="reveal delay-2 text-lg text-ivory/60 font-light max-w-2xl mx-auto mb-12">
-        A short note is all we need. Our bookings desk replies within the hour, in business hours, by a real person.
+        A brief enquiry is all we require. Our bookings desk responds within the hour during business hours. <span className="text-ivory">New clients enjoy 15% off the first journey &mdash; quote LT26 at the desk.</span>
       </p>
       <div className="reveal delay-3 flex flex-wrap items-center justify-center gap-4 mb-16">
-        <a href="mailto:concierge@luxurytransport.co.uk" className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-ink px-10 py-5 rounded-full text-[12px] font-medium tracking-[0.22em] uppercase transition-all duration-300">
+        <a href="mailto:concierge@luxurytransport.co.uk" className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-ivory px-10 py-5 rounded-full text-[12px] font-medium tracking-[0.22em] uppercase transition-all duration-300">
           Get Started
           <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"/>
         </a>
@@ -780,7 +1125,7 @@ const CtaStrip = () => (
           Call the Desk
         </a>
       </div>
-      <div className="reveal delay-4 grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-white/10">
+      <div className="reveal delay-4 grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-black/10">
         <div>
           <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/40 mb-2">Bookings</div>
           <a href="tel:+442045773000" className="font-serif text-xl text-ivory hover:text-gold transition-colors">+44 20 4577 3000</a>
@@ -800,9 +1145,9 @@ const CtaStrip = () => (
 
 /* ============ FOOTER ============ */
 const Footer = () => (
-  <footer className="bg-ink-deep border-t border-white/5 pt-20 pb-10">
+  <footer className="bg-ink-deep border-t border-black/5 pt-20 pb-10">
     <div className="max-w-7xl mx-auto px-6 lg:px-10">
-      <div className="grid grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/5">
+      <div className="grid grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-black/5">
         <div className="col-span-2 lg:col-span-4">
           <a href="#top" className="inline-block font-serif text-2xl tracking-[0.18em] text-ivory mb-5">
             LT<span className="text-gold">.</span>
@@ -812,7 +1157,7 @@ const Footer = () => (
           </p>
           <div className="flex items-center gap-4">
             {[InstagramIcon, LinkedinIcon, XIcon].map((Ic, i) => (
-              <a key={i} href="#" aria-label="Social" className="w-9 h-9 flex items-center justify-center border border-white/10 text-ivory/60 hover:text-gold hover:border-gold transition-all duration-300">
+              <a key={i} href="#" aria-label="Social" className="w-9 h-9 flex items-center justify-center border border-black/10 text-ivory/60 hover:text-gold hover:border-gold transition-all duration-300">
                 <Ic className="w-4 h-4"/>
               </a>
             ))}
@@ -842,7 +1187,7 @@ const Footer = () => (
         </div>
 
         <div className="lg:col-span-3">
-          <h4 className="text-[11px] font-medium tracking-[0.22em] uppercase text-ivory mb-5">Contact</h4>
+          <h4 className="text-[11px] font-medium tracking-[0.22em] uppercase text-ivory mb-5">Inquire</h4>
           <ul className="space-y-3 text-sm text-ivory/55">
             <li><a href="tel:+442045773000" className="hover:text-gold transition-colors">+44 20 4577 3000</a></li>
             <li><a href="mailto:concierge@luxurytransport.co.uk" className="hover:text-gold transition-colors">concierge@luxurytransport.co.uk</a></li>
@@ -864,6 +1209,166 @@ const Footer = () => (
   </footer>
 );
 
+/* ============ HELP-DESK CONCIERGE CHATBOT ============ */
+/* Type: rule-based booking concierge with quick replies and keyword routing. */
+const ConciergeChatbot = () => {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { from: 'bot', text: "Welcome to Luxury Transport. I'm Adelaide, your booking concierge. How may I assist you today?" },
+  ]);
+  const [input, setInput] = useState('');
+  const [typing, setTyping] = useState(false);
+  const messagesRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesRef.current) messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+  }, [messages, open, typing]);
+
+  const quickReplies = [
+    'View pricing',
+    'Book a journey',
+    'Wedding enquiry',
+    'Speak to the desk',
+  ];
+
+  const respond = (raw) => {
+    const text = raw.toLowerCase();
+    if (/price|cost|how much|rate|fee|package|pricing/.test(text))
+      return "Our packages start at £150 per journey for Essential, £450 per day for Signature, and bespoke quotes for tailored itineraries. New clients receive 15% off the first booking — quote LT26.";
+    if (/book|reserve|reservation|schedule/.test(text))
+      return "Wonderful. You may use the booking widget at the top of the page, or I can pass your details to our desk. May I have a pickup location and date?";
+    if (/wedding|bride|marriage/.test(text))
+      return "We coordinate full wedding-day transport including the bridal car, family vehicles, and guest transfers. Champagne service is complimentary on Signature and Bespoke. Shall I arrange a callback from our wedding specialist?";
+    if (/airport|flight|terminal|heathrow|gatwick|stansted|luton|city/.test(text))
+      return "We service all UK airports with real-time flight monitoring, meet-and-greet, and 60 minutes of complimentary waiting time. Which airport and date are you considering?";
+    if (/hour|open|when|24|night/.test(text))
+      return "Our concierge desk is staffed 24 hours a day, 365 days a year. You may call us anytime on +44 20 4577 3000.";
+    if (/contact|phone|email|speak|call|human|person|desk/.test(text))
+      return "You may reach our desk on +44 20 4577 3000 or concierge@luxurytransport.co.uk — a member of our team responds within the hour.";
+    if (/discount|offer|deal|promo|code|15/.test(text))
+      return "First-time clients enjoy 15% off the opening journey. Simply quote LT26 when booking through the desk or the booking widget.";
+    if (/v-?class|car|vehicle|fleet|mercedes/.test(text))
+      return "Our fleet is the Mercedes V-Class, specified beyond standard — hand-stitched leather, panoramic glazed roof, champagne bar, refrigerator, and uniformed chauffeur. Capacity for up to eight guests.";
+    if (/hello|^hi$|^hey$|good (morning|evening|afternoon)/.test(text))
+      return "Good day. How may I assist you with your travel arrangements today?";
+    if (/thank/.test(text))
+      return "It is my pleasure. Is there anything further I can arrange for you?";
+    return "Forgive me, I may have misunderstood. Would you like to discuss pricing, book a journey, or speak with our desk directly?";
+  };
+
+  const send = (text) => {
+    if (!text || !text.trim()) return;
+    setMessages(m => [...m, { from: 'user', text: text.trim() }]);
+    setInput('');
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMessages(m => [...m, { from: 'bot', text: respond(text) }]);
+    }, 700);
+  };
+
+  return (
+    <>
+      {/* Floating launch button */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        aria-label={open ? 'Close concierge chat' : 'Open concierge chat'}
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-b from-gold to-gold-deep text-ivory shadow-[0_15px_45px_rgba(232,194,117,0.55)] flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_55px_rgba(232,194,117,0.75)] ring-2 ring-gold-light/30 ${open ? 'rotate-90' : ''}`}
+      >
+        {open ? <CloseIcon className="w-6 h-6"/> : <ChatBubbleIcon className="w-7 h-7"/>}
+        {!open && messages.length === 1 && (
+          <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-ink text-gold text-[10px] font-semibold flex items-center justify-center border border-gold/60 animate-pulse">1</span>
+        )}
+      </button>
+
+      {/* Chat window */}
+      <div
+        className={`fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] h-[540px] max-h-[calc(100vh-8rem)] bg-ink rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.30)] border border-black/10 flex flex-col overflow-hidden origin-bottom-right transition-all duration-300 ${
+          open ? 'opacity-100 scale-100 pointer-events-auto translate-y-0' : 'opacity-0 scale-90 pointer-events-none translate-y-4'
+        }`}
+      >
+        {/* Header */}
+        <div className="bg-gradient-to-br from-ink-soft to-ink border-b border-gold/30 px-5 py-4 flex items-center gap-3">
+          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold-deep border border-gold-light/40 flex items-center justify-center text-ivory font-serif text-sm tracking-wider shadow">
+            LT
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="font-serif text-base text-ivory leading-tight">Adelaide</div>
+            <div className="text-[10px] tracking-[0.18em] uppercase text-gold flex items-center gap-1.5 mt-0.5">
+              <span className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse"></span>
+              Booking Concierge · Online
+            </div>
+          </div>
+          <button onClick={() => setOpen(false)} aria-label="Close chat" className="text-ivory/60 hover:text-gold transition-colors p-1">
+            <CloseIcon className="w-4 h-4"/>
+          </button>
+        </div>
+
+        {/* Messages */}
+        <div ref={messagesRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-ink-soft/40">
+          {messages.map((m, i) => (
+            <div key={i} className={`flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[82%] px-4 py-2.5 text-[13px] leading-relaxed rounded-2xl ${
+                m.from === 'user'
+                  ? 'bg-gradient-to-b from-gold to-gold-deep text-ivory rounded-br-sm shadow'
+                  : 'bg-ink border border-black/10 text-ivory rounded-bl-sm'
+              }`}>
+                {m.text}
+              </div>
+            </div>
+          ))}
+          {typing && (
+            <div className="flex justify-start">
+              <div className="bg-ink border border-black/10 px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1">
+                <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style={{animationDelay: '0ms'}}></span>
+                <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style={{animationDelay: '150ms'}}></span>
+                <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style={{animationDelay: '300ms'}}></span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Quick replies (only on first turn) */}
+        {messages.length <= 1 && (
+          <div className="px-4 py-3 border-t border-black/5 flex flex-wrap gap-1.5 bg-ink">
+            {quickReplies.map(q => (
+              <button
+                key={q}
+                onClick={() => send(q)}
+                className="px-3 py-1.5 text-[11px] tracking-wide rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-ivory transition-all duration-300"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Input */}
+        <form
+          onSubmit={(e) => { e.preventDefault(); send(input); }}
+          className="border-t border-black/10 px-3 py-3 flex items-center gap-2 bg-ink"
+        >
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            className="flex-1 py-2 px-3 text-[13px] bg-black/5 border border-black/10 rounded-full focus:outline-none focus:border-gold focus:bg-black/10 text-ivory placeholder:text-ivory/40 transition-colors"
+          />
+          <button
+            type="submit"
+            aria-label="Send message"
+            disabled={!input.trim()}
+            className="w-9 h-9 rounded-full bg-gradient-to-b from-gold to-gold-deep text-ivory flex items-center justify-center hover:from-gold-light disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300 flex-shrink-0"
+          >
+            <SendIcon className="w-4 h-4"/>
+          </button>
+        </form>
+      </div>
+    </>
+  );
+};
+
 /* ============ APP ============ */
 const App = () => {
   useReveal();
@@ -874,10 +1379,13 @@ const App = () => {
         <Hero/>
         <SocialProof/>
         <Features/>
+        <HowItWorks/>
         <Fleet/>
+        <Testimonials/>
         <CtaStrip/>
       </main>
       <Footer/>
+      <ConciergeChatbot/>
     </>
   );
 };
