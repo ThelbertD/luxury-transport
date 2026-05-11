@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luxury Transport Ltd — Private Chauffeur, London</title>
+<title>Luxury Transport Ltd · Private Chauffeur, London</title>
 <meta name="description" content="London-based luxury chauffeur house. Airport transfers, executive travel, VIP transport and weddings in the Mercedes V-Class." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -585,7 +585,7 @@ const Hero = () => {
           Travel that arrives <em className="font-light gold-text-gradient">composed</em>, every time.
         </h1>
         <p className="reveal delay-2 text-lg lg:text-xl text-ivory/80 max-w-xl mx-auto lg:mx-0 mb-10 font-light leading-relaxed">
-          London's premier private chauffeur service. Distinguished transport for airport transfers, executive travel, weddings and tour itineraries &mdash; exclusively aboard the Mercedes V-Class.
+          London's premier private chauffeur service. Distinguished transport for airport transfers, executive travel, weddings and tour itineraries, exclusively aboard the Mercedes V-Class.
         </p>
         <div className="reveal delay-4 mb-10 text-[12px] tracking-[0.18em] uppercase text-ivory/70">
           New clients receive <span className="text-gold">15% off the first journey</span> &nbsp;·&nbsp;
@@ -919,7 +919,7 @@ const Fleet = () => {
             A private <em className="text-gold">on wheels</em>.
           </h2>
           <p className="reveal delay-2 text-lg text-ivory/65 font-light leading-relaxed mb-10 max-w-xl">
-            The Mercedes V-Class, specified far beyond manufacturer standard. Hand-stitched leather, panoramic glazed roof, decorative fireplace, refrigerator and champagne bar. Eight-passenger capacity with the privacy of a private suite &mdash; complimentary refreshments included.
+            The Mercedes V-Class, specified far beyond manufacturer standard. Hand-stitched leather, panoramic glazed roof, decorative fireplace, refrigerator and champagne bar. Eight-passenger capacity with the privacy of a private suite, complimentary refreshments included.
           </p>
           <ul className="reveal delay-3 grid grid-cols-2 gap-x-6 gap-y-3 mb-10 max-w-xl">
             {fleetFeatures.map((f, i) => (
@@ -931,7 +931,7 @@ const Fleet = () => {
                   hovered === i ? 'text-gold' : 'text-ivory/80 hover:text-gold/80'
                 }`}
               >
-                <span className={`mt-1.5 transition-all duration-300 ${hovered === i ? 'text-gold w-4' : 'text-gold w-3'}`}>—</span>
+                <span className={`mt-1.5 transition-all duration-300 ${hovered === i ? 'text-gold w-4' : 'text-gold w-3'}`}>·</span>
                 <span dangerouslySetInnerHTML={{ __html: f.label }}></span>
               </li>
             ))}
@@ -1000,10 +1000,10 @@ const Fleet = () => {
 
 /* ============ TESTIMONIALS + TRUST STATS (combined) ============ */
 const trustStats = [
-  { value: '97%',  label: 'Return Clients',     desc: 'Of our clients book a second journey within twelve months — most return for years.' },
+  { value: '97%',  label: 'Return Clients',     desc: 'Of our clients book a second journey within twelve months. Most return for years.' },
   { value: '20+',  label: 'Years of Service',   desc: 'Two decades of moving discerning clients across London and the European mainland with the same standards.' },
   { value: '12hr', label: 'Advance Notice',     desc: 'A typical lead time. Same-day and overnight bookings are routinely accommodated through the desk.' },
-  { value: '24/7', label: 'Concierge Desk',     desc: 'A real person answers our line at any hour, every day of the year — including public holidays.' },
+  { value: '24/7', label: 'Concierge Desk',     desc: 'A real person answers our line at any hour, every day of the year, including public holidays.' },
 ];
 
 const Testimonials = () => {
@@ -1029,41 +1029,8 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Trust stats — clickable tabs */}
-        <div className="reveal delay-3 grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6 mb-6">
-          {trustStats.map((s, i) => (
-            <button
-              key={s.value}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-pressed={active === i}
-              className={`group relative px-6 py-7 rounded-xl border transition-all duration-300 text-left ${
-                active === i
-                  ? 'border-gold bg-gold/10 shadow-[0_15px_40px_rgba(232,194,117,0.20)] -translate-y-0.5'
-                  : 'border-black/10 bg-ink-soft hover:border-gold/40 hover:bg-gold/[0.05]'
-              }`}
-            >
-              <div className={`font-serif text-4xl lg:text-5xl leading-none mb-2 transition-colors text-ivory ${
-                active === i ? 'font-medium' : 'font-light'
-              }`}>
-                {s.value}
-              </div>
-              <div className={`text-[11px] tracking-[0.18em] uppercase transition-colors ${
-                active === i ? 'text-ivory font-semibold' : 'text-ivory/60 font-medium group-hover:text-gold'
-              }`}>
-                {s.label}
-              </div>
-            </button>
-          ))}
-        </div>
-        <div key={active} className="text-center max-w-2xl mx-auto min-h-[3.5rem] mb-16 animate-fade-up">
-          <p className="text-ivory/70 text-[15px] leading-relaxed font-light">
-            {trustStats[active].desc}
-          </p>
-        </div>
-
         {/* Testimonial cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {testimonials.map((t, i) => (
             <article
               key={t.name}
@@ -1095,6 +1062,39 @@ const Testimonials = () => {
             </article>
           ))}
         </div>
+
+        {/* Trust stats — clickable tabs */}
+        <div className="reveal delay-3 grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6 mb-6">
+          {trustStats.map((s, i) => (
+            <button
+              key={s.value}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-pressed={active === i}
+              className={`group relative px-6 py-7 rounded-xl border transition-all duration-300 text-left ${
+                active === i
+                  ? 'border-gold bg-gold/10 shadow-[0_15px_40px_rgba(232,194,117,0.20)] -translate-y-0.5'
+                  : 'border-black/10 bg-ink-soft hover:border-gold/40 hover:bg-gold/[0.05]'
+              }`}
+            >
+              <div className={`font-serif text-4xl lg:text-5xl leading-none mb-2 transition-colors text-ivory ${
+                active === i ? 'font-medium' : 'font-light'
+              }`}>
+                {s.value}
+              </div>
+              <div className={`text-[11px] tracking-[0.18em] uppercase transition-colors ${
+                active === i ? 'text-ivory font-semibold' : 'text-ivory/60 font-medium group-hover:text-gold'
+              }`}>
+                {s.label}
+              </div>
+            </button>
+          ))}
+        </div>
+        <div key={active} className="text-center max-w-2xl mx-auto min-h-[3.5rem] animate-fade-up">
+          <p className="text-ivory/70 text-[15px] leading-relaxed font-light">
+            {trustStats[active].desc}
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -1114,7 +1114,7 @@ const CtaStrip = () => (
         Your next journey, <em className="gold-text-gradient">handled</em>.
       </h2>
       <p className="reveal delay-2 text-lg text-ivory/60 font-light max-w-2xl mx-auto mb-12">
-        A brief enquiry is all we require. Our bookings desk responds within the hour during business hours. <span className="text-ivory">New clients enjoy 15% off the first journey &mdash; quote LT26 at the desk.</span>
+        A brief enquiry is all we require. Our bookings desk responds within the hour during business hours. <span className="text-ivory">New clients enjoy 15% off the first journey. Quote LT26 at the desk.</span>
       </p>
       <div className="reveal delay-3 flex flex-wrap items-center justify-center gap-4 mb-16">
         <a href="mailto:concierge@luxurytransport.co.uk" className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-ivory px-10 py-5 rounded-full text-[12px] font-medium tracking-[0.22em] uppercase transition-all duration-300">
@@ -1234,7 +1234,7 @@ const ConciergeChatbot = () => {
   const respond = (raw) => {
     const text = raw.toLowerCase();
     if (/price|cost|how much|rate|fee|package|pricing/.test(text))
-      return "Our packages start at £150 per journey for Essential, £450 per day for Signature, and bespoke quotes for tailored itineraries. New clients receive 15% off the first booking — quote LT26.";
+      return "Our packages start at £150 per journey for Essential, £450 per day for Signature, and bespoke quotes for tailored itineraries. New clients receive 15% off the first booking. Quote LT26.";
     if (/book|reserve|reservation|schedule/.test(text))
       return "Wonderful. You may use the booking widget at the top of the page, or I can pass your details to our desk. May I have a pickup location and date?";
     if (/wedding|bride|marriage/.test(text))
@@ -1244,11 +1244,11 @@ const ConciergeChatbot = () => {
     if (/hour|open|when|24|night/.test(text))
       return "Our concierge desk is staffed 24 hours a day, 365 days a year. You may call us anytime on +44 20 4577 3000.";
     if (/contact|phone|email|speak|call|human|person|desk/.test(text))
-      return "You may reach our desk on +44 20 4577 3000 or concierge@luxurytransport.co.uk — a member of our team responds within the hour.";
+      return "You may reach our desk on +44 20 4577 3000 or concierge@luxurytransport.co.uk. A member of our team responds within the hour.";
     if (/discount|offer|deal|promo|code|15/.test(text))
       return "First-time clients enjoy 15% off the opening journey. Simply quote LT26 when booking through the desk or the booking widget.";
     if (/v-?class|car|vehicle|fleet|mercedes/.test(text))
-      return "Our fleet is the Mercedes V-Class, specified beyond standard — hand-stitched leather, panoramic glazed roof, champagne bar, refrigerator, and uniformed chauffeur. Capacity for up to eight guests.";
+      return "Our fleet is the Mercedes V-Class, specified beyond standard. Hand-stitched leather, panoramic glazed roof, champagne bar, refrigerator, and uniformed chauffeur. Capacity for up to eight guests.";
     if (/hello|^hi$|^hey$|good (morning|evening|afternoon)/.test(text))
       return "Good day. How may I assist you with your travel arrangements today?";
     if (/thank/.test(text))
